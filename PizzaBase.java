@@ -26,11 +26,10 @@ abstract class PizzaBase {
     }
 
     public abstract double calculatePrice();
-    public abstract double getDiameter();
+    public abstract int getDiameter();
     public abstract String getToppings();
     public abstract int getHowMany();
     public abstract String getDiscount();
     public abstract double getDiscountRate();
-    public abstract double convertToCm();
 }
 
