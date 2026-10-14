@@ -108,15 +108,15 @@ public class TAKE_ORDER {
         BILL_ORDER bill = new BILL_ORDER();
 
         double amountReceived;
-        double amountDue = bill.OUT(PIE);
+        double amountDue = Math.round(bill.OUT(PIE) * 100.0) / 100.0;
 
         do {
             System.out.print("\nEnter Amount Received: ");
             amountReceived = console.nextDouble();
-            if(amountReceived <= amountDue){
+            if(amountReceived < amountDue){
                 System.out.println("Amount Received must be greater than Amount Due.");
             }
-        } while (amountReceived <= amountDue);
+        } while (amountReceived < amountDue);
          
         System.out.printf("Change: PHP%.2f", amountReceived - amountDue);
     }
