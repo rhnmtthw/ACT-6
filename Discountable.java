@@ -1,3 +1,3 @@
-public interface Discountable {
+interface Discountable {
     double getDiscountRate();
-} 
+}

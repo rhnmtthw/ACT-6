@@ -1,21 +1,26 @@
-public class PIZZA extends PizzaBase implements Discountable {
+
+class PIZZA extends PizzaBase implements Discountable {
 
     private String toppings;
     private String discount;
-    private int Diameter;
-    private int HowMany;
+    private int diameter;
+    private int howMany;
     private double price;
 
     public void setToppings(String toppings) {
         this.toppings = toppings;
     }
 
-    public void setDiameter(int Diameter) {
-        this.Diameter = Diameter;
+    public void setDiameter(int diameter) {
+        if (diameter > 0) {
+            this.diameter = diameter;
+        }
     }
 
-    public void setHowMany(int HowMany) {
-        this.HowMany = HowMany;
+    public void setHowMany(int howMany) {
+        if (howMany > 0) {
+            this.howMany = howMany;
+        }
     }
 
     public void setDiscount(String discount) {
@@ -27,30 +32,41 @@ public class PIZZA extends PizzaBase implements Discountable {
     }
 
     public int getDiameter() {
-        return Diameter;
+        return diameter;
+    }
+
+    public int getHowMany() {
+        return howMany;
+    }
+
+    public String getDiscount() {
+        return discount;
     }
 
     public double getPrice() {
         return price;
     }
 
+    public double convertToCm(int diameter) {
+        return diameter * 2.54;
+    }
+
     @Override
     public double getDiscountRate() {
-        if (discount == null) {
-            return 0.0;
-        }
+
         if (discount.equalsIgnoreCase("Senior Citizen")) {
             return 0.20;
         } else if (discount.equalsIgnoreCase("VIPCard")) {
             return 0.12;
         }
+
         return 0.0;
     }
-   
+
     @Override
     public double calculatePrice() {
+
         double toppingPrice = 0;
-        double centimeter = Diameter * 2.54; // Fixed: 2.54 cm per inch
 
         if (toppings.equalsIgnoreCase("Pepperoni")) {
             toppingPrice = 100;
@@ -58,16 +74,14 @@ public class PIZZA extends PizzaBase implements Discountable {
             toppingPrice = 150;
         } else if (toppings.equalsIgnoreCase("Hawaiian")) {
             toppingPrice = 200;
-        } else {
-            System.out.println("Invalid toppings!");
-            return 0.0;
         }
 
-        price = toppingPrice + (centimeter * 5);
-        price = price * HowMany;
+        double centimeter = convertToCm(diameter);
+        double subtotal = toppingPrice + (centimeter * 5);
 
-        double discountRate = getDiscountRate();
-        price = price * (1.0 - discountRate);
+        subtotal = subtotal * howMany;
+
+        price = subtotal * (1 - getDiscountRate());
 
         return price;
     }

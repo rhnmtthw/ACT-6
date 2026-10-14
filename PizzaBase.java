@@ -1,17 +1,29 @@
-public abstract class PizzaBase {
+/*public abstract class PizzaBase {
 
-    protected static final double cmPerInch = 2.5;
-    protected static final double sizeChargePerCM = 5;
+    protected static final cmPerInch = 2.5;
+    protected  static final perCMCharge = 5;
+
+
+
+    public abstract double calculatePrice();
+    public abstract String getToppings(); 
+    public abstract int getDiameter();
+    public abstract int getHowMany();
+    public abstract double getPrice(); 
+    public abstract double getDiscountRate(); 
+}*/
+
+abstract class PizzaBase {
+
     protected String pizzaType;
 
     public void setPizzaType(String pizzaType) {
         this.pizzaType = pizzaType;
     }
+
     public String getPizzaType() {
         return pizzaType;
     }
-    
-    public abstract double calculatePrice();
-    public abstract 
 
+    public abstract double calculatePrice();
 }
